@@ -5,13 +5,12 @@ include "./compose.circom";
 include "./params.circom";
 
 template sbox() {
-    var sboxValues[641] = SBOX();
     signal input state[3][27];
     signal output outState[3][27];
 
     for(var i=0; i<3; i++) {
         for(var j=0; j<27; j++) {
-            outState[i][j] <== sboxValues[state[i][j]];
+            outState[i][j] <-- SBOX(state[i][j]);
         }
     }
 }
