@@ -36,15 +36,23 @@ template RC_C(x)  {
 
 
 
-function SI() {
-    return [
+template SI() {
+    signal output out[27];
+
+    var si[27] = [
         673, 678, 667, 683, 680, 655,
         683, 683, 681, 683, 675, 668,
         675, 677, 680, 681, 669, 683,
         681, 677, 668, 654, 663, 666,
         656, 658, 651
     ];
+
+    for(var i=0; i<27; i++)
+    {
+        out[i] <== si[i];
+    }
 }
+
 
 function DIVISORS() {
     return [
