@@ -26,6 +26,9 @@ zkeydir="../zkeyFiles"
 if [ "$1" = "reinforced_concrete" ]; then
     echo -e "\033[32mUsing Reinforced Concrete circuit\033[0m"
     circuit_name="reinforced_concrete"
+elif [ "$1" = "bricks" ]; then
+    echo -e "\033[32mUsing Bricks circuit\033[0m"
+    circuit_name="bricks"
 else
     echo -e "\033[33mUnrecognized argument"
     exit 1
