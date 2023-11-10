@@ -49,4 +49,3 @@ template Decompose() {
     outState[2] <== s2Decomposed.outState;
 }
 
-component main = Decompose();

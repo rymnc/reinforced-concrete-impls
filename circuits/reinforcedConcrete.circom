@@ -43,7 +43,31 @@ template ReinforcedConcrete() {
     concrete3.state[1] <== bricks2.outState[1];
     concrete3.state[2] <== bricks2.outState[2];
 
-    hash <== concrete3.outState[0];
+    component bars = Bars();
+    bars.state <== concrete3.outState;
+
+    component concrete4 = Concrete(12);
+    concrete4.state <== bars.outState;
+
+    component bricks3 = Bricks();
+    bricks3.state <== concrete4.outState;
+
+    component concrete5 = Concrete(15);
+    concrete5.state <== bricks3.outState;
+
+    component bricks4 = Bricks();
+    bricks4.state <== concrete5.outState;
+
+    component concrete6 = Concrete(18);
+    concrete6.state <== bricks4.outState;
+
+    component bricks5 = Bricks();
+    bricks5.state <== concrete6.outState;
+
+    component concrete7 = Concrete(21);
+    concrete7.state <== bricks5.outState;
+
+    hash <== concrete7.outState[0];
 }
 
 component main = ReinforcedConcrete();
