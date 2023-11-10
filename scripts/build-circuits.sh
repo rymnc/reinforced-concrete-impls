@@ -32,6 +32,9 @@ elif [ "$1" = "bricks" ]; then
 elif [ "$1" = "concrete" ]; then
     echo -e "\033[32mUsing Concrete circuit\033[0m"
     circuit_name="concrete"
+elif [ "$1" = "decompose" ]; then
+    echo -e "\033[32mUsing Decompose circuit\033[0m"
+    circuit_name="decompose"
 else
     echo -e "\033[33mUnrecognized argument"
     exit 1
