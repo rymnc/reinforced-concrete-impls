@@ -16,5 +16,3 @@ template Bricks() {
 
     outState <== intermediateState;
 }
-
-component main = Bricks();

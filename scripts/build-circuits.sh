@@ -23,9 +23,9 @@ circuit_path=""
 circuit_type=""
 zkeydir="../zkeyFiles"
 
-if [ "$1" = "reinforced_concrete" ]; then
+if [ "$1" = "reinforcedConcrete" ]; then
     echo -e "\033[32mUsing Reinforced Concrete circuit\033[0m"
-    circuit_name="reinforced_concrete"
+    circuit_name="reinforcedConcrete"
 elif [ "$1" = "bricks" ]; then
     echo -e "\033[32mUsing Bricks circuit\033[0m"
     circuit_name="bricks"

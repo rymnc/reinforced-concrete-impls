@@ -8,7 +8,7 @@ template ReinforcedConcrete() {
     signal output hash;
 
 
-    component concrete0 = Concrete();
+    component concrete0 = Concrete(0);
     concrete0.state[0] <== state[0];
     concrete0.state[1] <== state[1];
     concrete0.state[2] <== 0;
@@ -18,7 +18,7 @@ template ReinforcedConcrete() {
     bricks0.state[1] <== concrete0.outState[1];
     bricks0.state[2] <== concrete0.outState[2];
 
-    component concrete1 = Concrete();
+    component concrete1 = Concrete(3);
     concrete1.state[0] <== bricks0.outState[0];
     concrete1.state[1] <== bricks0.outState[1];
     concrete1.state[2] <== bricks0.outState[2];
@@ -28,7 +28,7 @@ template ReinforcedConcrete() {
     bricks1.state[1] <== concrete1.outState[1];
     bricks1.state[2] <== concrete1.outState[2];
 
-    component concrete2 = Concrete();
+    component concrete2 = Concrete(6);
     concrete2.state[0] <== bricks1.outState[0];
     concrete2.state[1] <== bricks1.outState[1];
     concrete2.state[2] <== bricks1.outState[2];
@@ -38,9 +38,12 @@ template ReinforcedConcrete() {
     bricks2.state[1] <== concrete2.outState[1];
     bricks2.state[2] <== concrete2.outState[2];
 
-    component concrete3 = Concrete();
+    component concrete3 = Concrete(9);
     concrete3.state[0] <== bricks2.outState[0];
     concrete3.state[1] <== bricks2.outState[1];
     concrete3.state[2] <== bricks2.outState[2];
 
+    hash <== concrete3.outState[0];
 }
+
+component main = ReinforcedConcrete();
