@@ -19,8 +19,3 @@ template concrete(i){
 	out_state[2] <== sum + state[2] + rc_constant_C.out;
 
 }
-
-
-
-
-component main = concrete(0);
