@@ -24,7 +24,29 @@ labels: 1017
 2. Build the circuit - `yarn build`
 3. Test the circuits outputs - `yarn test`
 
+## Usage in other circuits
+
+```circom
+include "../node_modules/reinforced-concrete-circom/reinforcedConcrete.circom";
+
+template MyCircuit() {
+    signal input a;
+    signal input b;
+
+    signal output c;
+
+    component hasher = ReinforcedConcrete();
+    hasher.state[0] <== a;
+    hasher.state[1] <== b;
+
+    c <== hasher.hash;
+}
+```
+
 ## Notes
+
+This implementation's params can be modified to serve as Monolith, 
+since Monolith is a generalization of RC, under the Goldilocks curve.
 
 We have modified the precomputed values for the divisors in the `decompose` construct to maintain compatibility with the reference implementation which splits a 254 bit word into 4 64 bit words. 
 This is not needed in an execution environment where the word size is 254 bits and above.
