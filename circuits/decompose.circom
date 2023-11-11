@@ -6,7 +6,7 @@ template DecomposeElement() {
     signal input state;
     signal output outState[27];
 
-    signal divisors[27] <-- DIVISORS();
+    signal divisors[27] <== DIVISORS();
     signal intermediateShl[27];
     signal remainders[27];
     signal quotients[27];

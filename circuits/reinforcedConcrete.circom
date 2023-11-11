@@ -6,7 +6,7 @@ include "./bars.circom";
 
 template ReinforcedConcrete() {
     signal input state[2];
-    signal output hash;
+    signal output hash[3];
 
 
     component concrete0 = Concrete(0);
@@ -35,28 +35,28 @@ template ReinforcedConcrete() {
     component bars = Bars();
     bars.state <== concrete3.outState;
 
-    // component concrete4 = Concrete(12);
-    // concrete4.state <== bars.outState;
+    component concrete4 = Concrete(12);
+    concrete4.state <== bars.outState;
 
-    // component bricks3 = Bricks();
-    // bricks3.state <== concrete4.outState;
+    component bricks3 = Bricks();
+    bricks3.state <== concrete4.outState;
 
-    // component concrete5 = Concrete(15);
-    // concrete5.state <== bricks3.outState;
+    component concrete5 = Concrete(15);
+    concrete5.state <== bricks3.outState;
 
-    // component bricks4 = Bricks();
-    // bricks4.state <== concrete5.outState;
+    component bricks4 = Bricks();
+    bricks4.state <== concrete5.outState;
 
-    // component concrete6 = Concrete(18);
-    // concrete6.state <== bricks4.outState;
+    component concrete6 = Concrete(18);
+    concrete6.state <== bricks4.outState;
 
-    // component bricks5 = Bricks();
-    // bricks5.state <== concrete6.outState;
+    component bricks5 = Bricks();
+    bricks5.state <== concrete6.outState;
 
-    // component concrete7 = Concrete(21);
-    // concrete7.state <== bricks5.outState;
+    component concrete7 = Concrete(21);
+    concrete7.state <== bricks5.outState;
 
-    hash <== bars.outState[2];
+    hash <== concrete7.outState;
 }
 
 component main = ReinforcedConcrete();

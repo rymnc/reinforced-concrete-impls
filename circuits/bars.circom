@@ -26,9 +26,14 @@ template Bars() {
     component sbox = sbox();
     sbox.state <== decompose.outState;
 
-
     component compose = Compose();
     compose.state <== sbox.outState;
 
+    log(compose.outState[0]);
+    log(compose.outState[1]);
+    log(compose.outState[2]);
+
     outState <== compose.outState;
 }
+
+// component main = Bars();
