@@ -61,24 +61,24 @@ echo -e "\033[36mBuild Path: $PWD\033[0m"
 circom --version
 circom $circuit_path --r1cs --wasm --sym
 
-npx snarkjs r1cs export json $circuit_name.r1cs $circuit_name.r1cs.json
+npx snarkjs r1cs export json ./build/$circuit_name.r1cs ./build/$circuit_name.r1cs.json
 
 echo -e "\033[36mRunning groth16 trusted setup\033[0m"
 
-npx snarkjs groth16 setup $circuit_name.r1cs powersOfTau28_hez_final_14.ptau setup/circuit_00000.zkey
+npx snarkjs groth16 setup ./build/$circuit_name.r1cs ./build/powersOfTau28_hez_final_14.ptau ./build/setup/circuit_00000.zkey
 
-npx snarkjs zkey contribute setup/circuit_00000.zkey setup/circuit_00001.zkey --name="First contribution" -v -e="Random entropy"
-npx snarkjs zkey contribute setup/circuit_00001.zkey setup/circuit_00002.zkey --name="Second contribution" -v -e="Another random entropy"
-npx snarkjs zkey beacon setup/circuit_00002.zkey setup/final.zkey 0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f 10 -n="Final Beacon phase2"
+npx snarkjs zkey contribute ./build/setup/circuit_00000.zkey ./build/setup/circuit_00001.zkey --name="First contribution" -v -e="Random entropy"
+npx snarkjs zkey contribute ./build/setup/circuit_00001.zkey ./build/setup/circuit_00002.zkey --name="Second contribution" -v -e="Another random entropy"
+npx snarkjs zkey beacon ./build/setup/circuit_00002.zkey ./build/setup/final.zkey 0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f 10 -n="Final Beacon phase2"
 
 echo -e "Exporting artifacts to zkeyFiles and contracts directory"
 
 mkdir -p $zkeypath
-npx snarkjs zkey export verificationkey setup/final.zkey $zkeypath/verification_key.json
-npx snarkjs zkey export solidityverifier setup/final.zkey contracts/verifier.sol
+npx snarkjs zkey export verificationkey ./build/setup/final.zkey ./build/$zkeypath/verification_key.json
+npx snarkjs zkey export solidityverifier ./build/setup/final.zkey ./build/contracts/verifier.sol
 
 cp $circuit_name\_js/$circuit_name.wasm $zkeypath/circuit.wasm
-cp setup/final.zkey $zkeypath/final.zkey
+cp ../build/setup/final.zkey $zkeypath/final.zkey
 
 shasumcmd="shasum -a 256"
 
