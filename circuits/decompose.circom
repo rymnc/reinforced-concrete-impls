@@ -7,27 +7,23 @@ template DecomposeElement() {
     signal output outState[27];
 
     signal divisors[27] <== DIVISORS();
-    signal intermediateShl[27];
     signal remainders[27];
     signal quotients[27];
-    signal intermediateShr[27];
 
-    intermediateShl[26] <-- state << 2;
-    quotients[26] <-- intermediateShl[26] \ divisors[26];
-    remainders[26] <-- intermediateShl[26] % divisors[26];
-    outState[26] <-- remainders[26] >> 2;
-    outState[26] * 4 === remainders[26];
+    quotients[26] <-- state \ divisors[26];
+    remainders[26] <-- state % divisors[26];
+    outState[26] <-- remainders[26];
+    // outState[26] * 4 === remainders[26];
 
     for(var i=25; i>=0; i--) {
         if (i == 0) {
             outState[0] <-- quotients[1];
-            quotients[1] * divisors[1] + remainders[1] === intermediateShl[1];
+            // quotients[1] * divisors[1] + remainders[1] === intermediateShl[1];
         } else {
-            intermediateShl[i] <-- quotients[i+1] << 2;
-            quotients[i] <-- intermediateShl[i] \ divisors[i];
-            remainders[i] <-- intermediateShl[i] % divisors[i];
-            outState[i] <-- remainders[i] >> 2;
-            outState[i] * 4 === remainders[i];
+            quotients[i] <-- quotients[i + 1] \ divisors[i];
+            remainders[i] <-- quotients[i + 1] % divisors[i];
+            outState[i] <-- remainders[i];
+            // outState[i] * 4 === remainders[i];
         }
     }
 }
