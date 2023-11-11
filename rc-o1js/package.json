@@ -1,6 +1,9 @@
 {
     "name": "reinforced-concrete-o1js",
     "license": "Apache-2.0",
+    "scripts": {
+        "build": "npx tsc"
+    },
     "version": "1.0.0",
     "devDependencies": {
         "typescript": "5.2.2"

@@ -31,7 +31,7 @@ labels: 1017
 2. Build the circuit - `yarn build:rc-circom`
 3. Test the circuits outputs - `yarn test:rc-circom`
 
-## Usage in other circuits
+### Usage in other circuits
 
 ```circom
 include "../node_modules/reinforced-concrete-circom/reinforcedConcrete.circom";
@@ -59,7 +59,7 @@ We have modified the precomputed values for the divisors in the `decompose` cons
 This is not needed in an execution environment where the word size is 254 bits and above.
 
 This Hash function has significantly lower constraints than [Poseidon](https://github.com/iden3/circomlib/blob/master/circuits/poseidon.circom), 
-while having better security against statistical attacks.
+while having better security against statistical & algebraic attacks.
 
 This hash function can replace Poseidon in any zk-based application. 
 This includes, but not limited to, Semaphore, RLN, and so on.
@@ -67,11 +67,41 @@ This includes, but not limited to, Semaphore, RLN, and so on.
 
 ## 2) reinforced-concrete-o1js
 
+RC hash function implemented in o1js for the Pallas field.
+
+This implementation exposes an API familiar to users making use of Poseidon within the o1js ecosystem.
+We have also generated round constants specific to the Pallas field for this implementation.
+
+### Usage
+
+1. Install the dependencies required - `yarn`
+2. Build the library - `yarn build:rc-o1js`
+
+### To replace Poseidon in your o1js application
+
+```typescript
+import { Field } from 'o1js';
+import { ReinforcedConcrete } from 'reinforced-concrete-o1js';
+
+function knowsPreimage(preimage: Field) {
+  let hash = ReinforcedConcrete.hash([preimage, Field.zero()]);
+  hash.assertEquals(expectedHash);
+}
+
+const expectedHash =
+  Field(/* ... */);
+```
+
+### Notes
+
+This hash function can replace Poseidon in any zk-based application. 
+This includes, but not limited to, Semaphore, RLN, and so on.
+
 ## License
 
 [Apache 2.0](https://github.com/rymnc/reinforced-concrete-circom/blob/master/LICENSE)
 
 ## Disclaimer
 
-_These circuits are being provided as is. No guarantee, representation or warranty is being made, express or implied, as to the safety or correctness of the execution. They have not been audited and as such there can be no assurance they will work as intended. The creators are not liable for any of the foregoing. Users should proceed with caution and use at their own risk._
+_These circuits & libraries are being provided as is. No guarantee, representation or warranty is being made, express or implied, as to the safety or correctness of the execution. They have not been audited and as such there can be no assurance they will work as intended. The creators are not liable for any of the foregoing. Users should proceed with caution and use at their own risk._
 

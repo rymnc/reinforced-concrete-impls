@@ -4,7 +4,8 @@
     "license": "Apache-2.0",
     "scripts": {
         "build:rc-circom": "cd rc-circom && yarn build",
-        "test:rc-circom": "cd rc-circom && yarn test"
+        "test:rc-circom": "cd rc-circom && yarn test",
+        "build:rc-o1js": "cd rc-o1js && yarn build"
     },
     "workspaces": [
         "rc-circom/",
