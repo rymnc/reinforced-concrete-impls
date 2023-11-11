@@ -1,0 +1,7 @@
+{
+    "name": "reinforced-concrete-o1js",
+    "version": "1.0.0",
+    "devDependencies": {
+        "typescript": "5.2.2"
+    }
+}

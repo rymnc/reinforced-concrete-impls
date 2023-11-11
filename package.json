@@ -1,5 +1,6 @@
 {
     "name": "multiple-implementation-rc",
+    "private": true,
     "license": "Apache-2.0",
     "scripts": {
         "build:rc-circom": "cd rc-circom && yarn build",
