@@ -4,59 +4,51 @@ include "./bricks.circom";
 include "./concrete.circom";
 include "./bars.circom";
 
-template ReinforcedConcrete() {
-    signal input state[2];
+template ReinforcedConcretePermutation() {
+    signal input state[3];
     signal output hash[3];
 
+    component bricks[8];
+    component concrete[8];
 
-    component concrete0 = Concrete(0);
-    concrete0.state[0] <== state[0];
-    concrete0.state[1] <== state[1];
-    concrete0.state[2] <== 0;
+    concrete[0] = Concrete(0);
+    concrete[0].state <== state;
 
-    component bricks0 = Bricks();
-    bricks0.state <== concrete0.outState;
+    for(var i=1; i<=3; i++) {
+        bricks[i] = Bricks();
+        bricks[i].state <== concrete[i - 1].outState;
 
-    component concrete1 = Concrete(3);
-    concrete1.state <== bricks0.outState;
-
-    component bricks1 = Bricks();
-    bricks1.state <== concrete1.outState;
-
-    component concrete2 = Concrete(6);
-    concrete2.state <== bricks1.outState;
-
-    component bricks2 = Bricks();
-    bricks2.state <== concrete2.outState;
-
-    component concrete3 = Concrete(9);
-    concrete3.state <== bricks2.outState;
+        concrete[i] = Concrete(i * 3);
+        concrete[i].state <== bricks[i].outState;
+    }
 
     component bars = Bars();
-    bars.state <== concrete3.outState;
+    bars.state <== concrete[3].outState;
 
-    component concrete4 = Concrete(12);
-    concrete4.state <== bars.outState;
+    concrete[4] = Concrete(12);
+    concrete[4].state <== bars.outState;
 
-    component bricks3 = Bricks();
-    bricks3.state <== concrete4.outState;
+    for(var i=5; i<=7; i++) {
+        bricks[i] = Bricks();
+        bricks[i].state <== concrete[i - 1].outState;
 
-    component concrete5 = Concrete(15);
-    concrete5.state <== bricks3.outState;
+        concrete[i] = Concrete(i * 3);
+        concrete[i].state <== bricks[i].outState;
+    }
 
-    component bricks4 = Bricks();
-    bricks4.state <== concrete5.outState;
-
-    component concrete6 = Concrete(18);
-    concrete6.state <== bricks4.outState;
-
-    component bricks5 = Bricks();
-    bricks5.state <== concrete6.outState;
-
-    component concrete7 = Concrete(21);
-    concrete7.state <== bricks5.outState;
-
-    hash <== concrete7.outState;
+    hash <== concrete[7].outState;
 }
 
-component main = ReinforcedConcrete();
+template ReinforcedConcreteHash() {
+    signal input state[2];
+    signal output hash;
+
+    component rc = ReinforcedConcretePermutation();
+    rc.state[0] <== state[0];
+    rc.state[1] <== state[1];
+    rc.state[2] <== 0;
+
+    hash <== rc.hash[0];
+}
+
+component main = ReinforcedConcreteHash();

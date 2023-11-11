@@ -12,18 +12,17 @@ template DecomposeElement() {
 
     quotients[26] <-- state \ divisors[26];
     remainders[26] <-- state % divisors[26];
-    outState[26] <-- remainders[26];
-    // outState[26] * 4 === remainders[26];
+    outState[26] <== remainders[26];
+    quotients[26] * divisors[26] + remainders[26] === state;
 
     for(var i=25; i>=0; i--) {
         if (i == 0) {
-            outState[0] <-- quotients[1];
-            // quotients[1] * divisors[1] + remainders[1] === intermediateShl[1];
+            outState[0] <== quotients[1];
         } else {
             quotients[i] <-- quotients[i + 1] \ divisors[i];
             remainders[i] <-- quotients[i + 1] % divisors[i];
-            outState[i] <-- remainders[i];
-            // outState[i] * 4 === remainders[i];
+            outState[i] <== remainders[i];
+            quotients[i] * divisors[i] + remainders[i] === quotients[i + 1];
         }
     }
 }
