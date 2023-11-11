@@ -1,7 +1,11 @@
 {
     "name": "reinforced-concrete-o1js",
+    "license": "Apache-2.0",
     "version": "1.0.0",
     "devDependencies": {
         "typescript": "5.2.2"
+    },
+    "dependencies": {
+        "o1js": "^0.14.1"
     }
 }

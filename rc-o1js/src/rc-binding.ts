@@ -185,5 +185,5 @@ function createRc(
     return intermediateState;
   }
 
-  return { initialState, hash };
+  return { initialState, hash, permutation };
 }
