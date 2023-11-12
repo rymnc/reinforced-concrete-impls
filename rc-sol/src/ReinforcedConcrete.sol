@@ -811,27 +811,40 @@ contract ReinforcedConcrete {
 
         for (uint256 i = 0; i < 3; i++) {
             uint256 repr = state[i];
+            uint256[] memory outStateForRound = new uint256[](27);
+
             for (uint256 j = 26; j >= 0; j--) {
                 if (j == 0) {
-                    outState[i][0] = uint256(repr);
+                    outStateForRound[j] = repr;
+                    break; // otherwise arithmetic underflow/overflow
                 } else {
-                    outState[i][j] = repr % divisors[j];
+                    outStateForRound[j] = repr % divisors[j];
                     repr = repr / divisors[j];
-                    console2.log(repr, divisors[j], j);
                 }
             }
+
+            outState[i] = outStateForRound;
         }
     }
 
     function lookup(uint256[][] memory state) public view returns (uint256[][] memory outState) {
+        outState = new uint256[][](3);
         for (uint256 i = 0; i < 3; i++) {
+            outState[i] = new uint256[](27);
+        }
+
+        for (uint256 i = 0; i < 3; i++) {
+            uint256[] memory outStateForRound = new uint256[](27);
             for (uint256 j = 0; j < 27; j++) {
-                outState[i][j] = sbox[state[i][j]];
+                outStateForRound[j] = sbox[state[i][j]];
             }
+            outState[i] = outStateForRound;
         }
     }
 
     function compose(uint256[][] memory state) public view returns (uint256[] memory outState) {
+        outState = new uint256[](3);
+
         for (uint256 i = 0; i < 3; i++) {
             uint256[53] memory tmp;
             for (uint256 k = 0; k < 27; k++) {
