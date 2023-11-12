@@ -97,17 +97,18 @@ This includes, but not limited to, Semaphore, RLN, and so on.
 
 ## 3) reinforced-concrete-solidity
 
-A WIP implementation is [here](./rc-sol/) but it is not optimized, and neither does it work.
+A very un-optimized version of the RC hash function, implemented in Solidity. This implementation is not recommended for anyone sane.
+
+You may find an [optimized version in huff](https://github.com/rymnc/reinforced-concrete-huff), which is atleast 20x cheaper than this implementation.
 
 ### Usage
 
-1. Install the dependencies - `foundry`
-2. Test the hash function - `foundry test`
+1. Install the dependencies - `foundry install`
+2. Test the hash function - `yarn test:rc-sol`
 
 ### Notes
 
-We encountered an Arithmetic underflow while performing the divisions during `decompose`, 
-which is interesting since the [huff](https://github.com/rymnc/reinforced-concrete-huff) does not have the error.
+Don't use this!
 
 ## License
 
