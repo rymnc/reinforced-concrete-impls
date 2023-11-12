@@ -1,15 +1,14 @@
 # reinforced-concrete-implementations
 
-This repository contains RC hash function developed for [zkhack istanbul](https://zkistanbul.com). 
+## Introduction
 
-It consists of implementing RC in circom and o1js.
+This repository hosts the Reinforced Concrete (RC) hash function, developed specifically for [zkhack istanbul](https://zkistanbul). It features implementations in Circom and o1js, offering a robust alternative to traditional hash functions in zk-based applications.
 
 
 ## 1) reinforced-concrete-circom
 
-RC hash function implemented in circom for the bn254 field.
+The `reinforced-concrete-circom` module implements the RC hash function for the bn254 field. This implementation exhibits a full test parity with both the [reference implementation](https://extgit.iaik.tugraz.at/krypto/zkfriendlyhashzoo/-/blob/master/plain_impls/src/reinforced_concrete/reinforced_concrete_instances.rs) and [a third party implementation](https://github.com/rymnc/reinforced-concrete-huff).
 
-This implementation has full test parity with the [reference implementation](https://extgit.iaik.tugraz.at/krypto/zkfriendlyhashzoo/-/blob/master/plain_impls/src/reinforced_concrete/reinforced_concrete_instances.rs) and [a third party implementation](https://github.com/rymnc/reinforced-concrete-huff).
 
 ### Circuit
 
@@ -52,25 +51,23 @@ template MyCircuit() {
 
 ### Notes
 
-This implementation's params can be modified to serve as Monolith, 
+The parameters of this implementation can be modified to serve as Monolith, 
 since Monolith is a generalization of RC under the Goldilocks curve.
 
-We have modified the precomputed values for the divisors in the `decompose` construct to maintain compatibility with the reference implementation, which splits `254 bit` word into `64 bit` words. 
-This is not needed in an execution environment where the word size is 254 bits and above.
+Alterations have been made to the precomputed values for the divisors in the `decompose` construct ensuring compatibility with the reference implementation, which splits `254 bit` word into `64 bit` words. 
+However, these modifications are unnecessary in an execution environment where the word size is 254 bits and above.
 
-This Hash function has significantly lower constraints than [Poseidon](https://github.com/iden3/circomlib/blob/master/circuits/poseidon.circom), 
-while having better security against statistical & algebraic attacks.
+Compared to [Poseidon](https://github.com/iden3/circomlib/blob/master/circuits/poseidon.circom), this hash function is designed with significantly fewer constraints, enhancing its security against statistical and algebraic attacks.
 
-This hash function can replace Poseidon in any zk-based application. 
-This includes, but not limited to, Semaphore, RLN, and so on.
+It's versatile enough to serve as a substitute for Poseidon in various zk-based applications, including but not limited to Semaphore and RLN.
 
 
 ## 2) reinforced-concrete-o1js
 
-RC hash function implemented in o1js for the Pallas field.
+The RC hash function, implemented in o1js, is tailored for the Pallas field
 
-This implementation exposes an API familiar to users making use of Poseidon within the o1js ecosystem.
-We have also generated round constants specific to the Pallas field for this implementation.
+This version provides an API familiar to users using Poseidon within the o1js ecosystem.
+For this particular implementation, round constants have been generated to align with the specific requirements of the Pallas field.
 
 ### Usage
 
