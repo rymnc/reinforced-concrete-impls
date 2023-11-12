@@ -81,7 +81,7 @@ function createRc(
   function bricks(state: bigint[]) {
     //     outState[0] = s0 ^ 5;
     //     outState[1] = ((s0^2 + state[0]) + 2) * state[1];
-    //     outState[2] <== (s1^2 + (3 * state[1]) + 4) * state[2];
+    //     outState[2] = (s1^2 + (3 * state[1]) + 4) * state[2];
 
     const res: bigint[] = [];
 
