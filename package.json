@@ -5,7 +5,9 @@
     "scripts": {
         "build:rc-circom": "cd rc-circom && yarn build",
         "test:rc-circom": "cd rc-circom && yarn test",
-        "build:rc-o1js": "cd rc-o1js && yarn build"
+        "build:rc-o1js": "cd rc-o1js && yarn build",
+        "test:rc-sol": "cd rc-sol && forge test",
+        "build:rc-sol": "cd rc-sol && forge build"
     },
     "workspaces": [
         "rc-circom/",
