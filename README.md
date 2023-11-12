@@ -68,6 +68,8 @@ The RC hash function, implemented in o1js, is tailored for the Pallas field. Thi
 
 For this particular implementation, round constants have been generated to align with the specific requirements of the Pallas field.
 
+> Note: while we have generated constants for the Pallas field, we cannot be sure of the result of the hash function since we have not prepared a kats for the same. This is out of scope for the submission :)
+
 ### Usage
 
 1. Install the dependencies required - `yarn`
@@ -92,6 +94,20 @@ const expectedHash =
 
 This hash function can replace Poseidon in any zk-based application. 
 This includes, but not limited to, Semaphore, RLN, and so on.
+
+## 3) reinforced-concrete-solidity
+
+A WIP implementation is [here](./rc-sol/) but it is not optimized, and neither does it work.
+
+### Usage
+
+1. Install the dependencies - `foundry`
+2. Test the hash function - `foundry test`
+
+### Notes
+
+We encountered an Arithmetic underflow while performing the divisions during `decompose`, 
+which is interesting since the [huff](https://github.com/rymnc/reinforced-concrete-huff) does not have the error.
 
 ## License
 
