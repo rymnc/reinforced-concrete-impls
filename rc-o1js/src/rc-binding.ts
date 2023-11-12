@@ -132,7 +132,7 @@ function createRc(
 
     res[0] = sboxedValues[0];
     for(let i = 1; i<27; i++) {
-        res[2*i-1] = Fp.mul(res[2*i-2], sboxedValues[i]);
+        res[2*i-1] = Fp.mul(res[2*i-2], params.divisors[i]);
         res[2*i] = Fp.add(res[2*i-1], sboxedValues[i]);
     }
 
