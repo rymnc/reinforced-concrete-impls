@@ -64,9 +64,8 @@ It's versatile enough to serve as a substitute for Poseidon in various zk-based 
 
 ## 2) reinforced-concrete-o1js
 
-The RC hash function, implemented in o1js, is tailored for the Pallas field
+The RC hash function, implemented in o1js, is tailored for the Pallas field. This version provides an API familiar to users using Poseidon within the o1js ecosystem.
 
-This version provides an API familiar to users using Poseidon within the o1js ecosystem.
 For this particular implementation, round constants have been generated to align with the specific requirements of the Pallas field.
 
 ### Usage
