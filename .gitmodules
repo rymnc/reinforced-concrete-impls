@@ -1,0 +1,3 @@
+[submodule "rc-sol/lib/forge-std"]
+	path = rc-sol/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
