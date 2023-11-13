@@ -14,15 +14,21 @@ template DecomposeElement() {
     remainders[26] <-- state % divisors[26];
     outState[26] <== remainders[26];
     quotients[26] * divisors[26] + remainders[26] === state;
+    remainders[26] === state - quotients[26] * divisors[26];
+
 
     for(var i=25; i>=0; i--) {
         if (i == 0) {
-            outState[0] <== quotients[1];
+            outState[0] <== quotients[i + 1];
         } else {
             quotients[i] <-- quotients[i + 1] \ divisors[i];
             remainders[i] <-- quotients[i + 1] % divisors[i];
             outState[i] <== remainders[i];
             quotients[i] * divisors[i] + remainders[i] === quotients[i + 1];
+            // note: the below constraint is not really required, 
+            // since the above constraint ensures that remainders[i] < divisors[i], 
+            // otherwise the above equation would not hold.
+            remainders[i] === quotients[i + 1] - quotients[i] * divisors[i];
         }
     }
 }
@@ -31,16 +37,8 @@ template Decompose() {
     signal input state[3];
     signal output outState[3][27];
 
-    component s0Decomposed = DecomposeElement();
-    s0Decomposed.state <== state[0];
-    outState[0] <== s0Decomposed.outState;
-
-    component s1Decomposed = DecomposeElement();
-    s1Decomposed.state <== state[1];
-    outState[1] <== s1Decomposed.outState;
-
-    component s2Decomposed = DecomposeElement();
-    s2Decomposed.state <== state[2];
-    outState[2] <== s2Decomposed.outState;
+    for(var i=0; i<3; i++) {
+        outState[i] <== DecomposeElement()(state[i]);
+    }
 }
 

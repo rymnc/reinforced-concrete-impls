@@ -18,30 +18,12 @@ else
     wget https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_14.ptau
 fi
 
-circuit_dir="../circuits"
+circuit_dir="../tests/"
 circuit_path=""
 circuit_type=""
 zkeydir="../zkeyFiles"
 
-if [ "$1" = "reinforcedConcrete" ]; then
-    echo -e "\033[32mUsing Reinforced Concrete circuit\033[0m"
-    circuit_name="reinforcedConcrete"
-elif [ "$1" = "bricks" ]; then
-    echo -e "\033[32mUsing Bricks circuit\033[0m"
-    circuit_name="bricks"
-elif [ "$1" = "concrete" ]; then
-    echo -e "\033[32mUsing Concrete circuit\033[0m"
-    circuit_name="concrete"
-elif [ "$1" = "decompose" ]; then
-    echo -e "\033[32mUsing Decompose circuit\033[0m"
-    circuit_name="decompose"
-elif [ "$1" = "bars" ]; then
-    echo -e "\033[32mUsing Bars circuit\033[0m"
-    circuit_name="bars"
-else
-    echo -e "\033[33mUnrecognized argument"
-    exit 1
-fi
+circuit_name="reinforcedConcreteTest"
 circuit_path="$circuit_dir/$circuit_name.circom"
 zkeypath="$zkeydir/$circuit_name"
 

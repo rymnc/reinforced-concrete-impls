@@ -2,7 +2,8 @@
     "name": "reinforced-concrete-circom",
     "version": "1.0.0",
     "scripts": {
-        "test": "npx mocha -p -r ts-node/register 'tests/reinforcedConcrete.test.js'"
+        "test": "npx mocha -p -r ts-node/register 'tests/reinforcedConcrete.test.js'",
+        "build": "./scripts/build-circuits.sh"
     },
     "dependencies": {
         "circomlib": "^2.0.5"
