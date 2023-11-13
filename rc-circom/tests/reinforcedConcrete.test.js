@@ -27,7 +27,7 @@ describe("ReinforcedConcrete", () => {
     };
 
     beforeEach(async () => {
-        circuit = await wasm_tester(path.join(__dirname, "../circuits/reinforcedConcrete.circom"));
+        circuit = await wasm_tester(path.join(__dirname, "reinforcedConcreteTest.circom"));
     })
 
     it("Compiles", async () => {

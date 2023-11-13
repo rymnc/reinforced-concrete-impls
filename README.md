@@ -27,8 +27,7 @@ labels: 1017
 ### Usage
 
 1. Install the dependencies required - `yarn`
-2. Build the circuit - `yarn build:rc-circom`
-3. Test the circuits outputs - `yarn test:rc-circom`
+2. Test the circuit outputs - `yarn test:rc-circom`
 
 ### Usage in other circuits
 

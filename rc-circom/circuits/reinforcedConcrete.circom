@@ -50,5 +50,3 @@ template ReinforcedConcreteHash() {
 
     hash <== rc.hash[0];
 }
-
-component main = ReinforcedConcreteHash();
