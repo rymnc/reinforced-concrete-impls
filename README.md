@@ -13,15 +13,15 @@ The `reinforced-concrete-circom` module implements the RC hash function for the 
 ### Circuit
 
 ```
-template instances: 41
-non-linear constraints: 36
+template instances: 43
+non-linear constraints: 846
 linear constraints: 0
 public inputs: 0
 public outputs: 1
 private inputs: 2
 private outputs: 0
-wires: 42
-labels: 1017
+wires: 849
+labels: 2313
 ```
 
 ### Usage
